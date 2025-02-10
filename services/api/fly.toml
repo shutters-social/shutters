@@ -26,10 +26,3 @@ primary_region = 'lhr'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-# [[services.http_checks]]
-#   interval = 10000
-#   grace_period = "5s"
-#   timeout = 2000
-#   method = "get"
-#   path = "/xrpc/_health"

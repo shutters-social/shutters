@@ -26,8 +26,3 @@ primary_region = 'lhr'
   memory = '1gb'
   cpu_kind = 'shared'
   cpus = 1
-
-[[services.ports]]
-  handlers = ["http"]
-  port = 80
-  force_https = true
