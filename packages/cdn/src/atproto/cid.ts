@@ -1,9 +1,9 @@
 import * as atcuteCid from '@atcute/cid';
 import * as Sentry from '@sentry/bun';
 import {
+  getBlobCached,
   getCachedBlobVerification,
   setCachedBlobVerification,
-  getBlobCached,
 } from '../state';
 
 export const verifyCid = async (cid: string, blob: Blob) =>

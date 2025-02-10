@@ -1,9 +1,9 @@
 import * as Sentry from '@sentry/bun';
-import { Hono } from "hono";
+import { Hono } from 'hono';
 import { fetchDidDocument, getPdsUrl, pullAndVerifyCid } from '../atproto';
+import { cdnHits } from '../metrics';
 import { isValidPreset } from '../presets';
 import { getBlobCached } from '../state';
-import { cdnHits } from '../metrics';
 
 export const createRouter = () => {
   const router = new Hono();

@@ -1,8 +1,5 @@
 import * as Sentry from '@sentry/bun';
-import {
-  getCachedDidDoc,
-  setCachedDidDoc,
-} from '../state';
+import { getCachedDidDoc, setCachedDidDoc } from '../state';
 
 export type DidDocument = {
   '@context': string[];
