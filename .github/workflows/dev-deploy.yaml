@@ -8,13 +8,13 @@ on:
 
 jobs:
   api:
-    uses: ./deploy.yaml
+    uses: ./.github/workflows/deploy.yaml
     with:
       service-name: api
       env: dev
 
   cdn:
-    uses: ./deploy.yaml
+    uses: ./.github/workflows/deploy.yaml
     with:
       service-name: cdn
       env: dev
