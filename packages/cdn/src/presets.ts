@@ -16,6 +16,24 @@ const _presets = {
     ll: '',
   },
 
+  avatar_s: {
+    quality: 50,
+    output: 'webp',
+    fit: 'cover',
+    w: 128,
+    h: 128,
+    ll: '',
+  },
+
+  avatar_t: {
+    quality: 50,
+    output: 'webp',
+    fit: 'cover',
+    w: 64,
+    h: 64,
+    ll: '',
+  },
+
   raw: {},
 } as const;
 export type Preset = keyof typeof _presets;
