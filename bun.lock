@@ -47,6 +47,19 @@
         "typescript": "^5.7.3",
       },
     },
+    "packages/dataplane": {
+      "name": "@shutters/dataplane",
+      "dependencies": {
+        "@shutters/shutterkit": "workspace:*",
+        "hono": "^4.7.0",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5.0.0",
+      },
+    },
     "packages/shutterkit": {
       "name": "@shutters/shutterkit",
       "version": "0.3.0",
@@ -75,6 +88,18 @@
       "name": "@shutters/cdn-service",
       "dependencies": {
         "@shutters/cdn": "workspace:*",
+      },
+    },
+    "services/dataplane": {
+      "name": "@shutters/dataplane-service",
+      "dependencies": {
+        "@shutters/dataplane": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^5.0.0",
       },
     },
   },
@@ -280,6 +305,10 @@
     "@shutters/cdn": ["@shutters/cdn@workspace:packages/cdn"],
 
     "@shutters/cdn-service": ["@shutters/cdn-service@workspace:services/cdn"],
+
+    "@shutters/dataplane": ["@shutters/dataplane@workspace:packages/dataplane"],
+
+    "@shutters/dataplane-service": ["@shutters/dataplane-service@workspace:services/dataplane"],
 
     "@shutters/shutterkit": ["@shutters/shutterkit@workspace:packages/shutterkit"],
 

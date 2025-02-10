@@ -20,3 +20,10 @@ jobs:
       service-name: cdn
       env: dev
     secrets: inherit
+
+  dataplane:
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      service-name: dataplane
+      env: dev
+    secrets: inherit
