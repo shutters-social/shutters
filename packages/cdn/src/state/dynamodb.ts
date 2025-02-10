@@ -5,7 +5,7 @@ import {
   PutCommand,
 } from '@aws-sdk/lib-dynamodb';
 import * as Sentry from '@sentry/bun';
-import type { DidDocument } from './atproto';
+import type { DidDocument } from '../atproto';
 
 const client = new DynamoDBClient({
   region: process.env.AWS_REGION ?? 'eu-west-2',

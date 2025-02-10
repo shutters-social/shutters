@@ -5,8 +5,8 @@ import {
   S3Client,
 } from '@aws-sdk/client-s3';
 import * as Sentry from '@sentry/bun';
-import { getBlob } from './blob';
-import type { Preset } from './presets';
+import { getBlob } from '../atproto';
+import type { Preset } from '../presets';
 
 const client = new S3Client({
   region: process.env.AWS_REGION ?? 'eu-west-2',

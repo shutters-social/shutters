@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/bun';
-import { type Preset, presets } from './presets';
+import { type Preset, presets } from '../presets';
 
 const wsrvUrl = 'https://wsrv.nl' as const;
 
