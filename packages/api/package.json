@@ -2,9 +2,9 @@
 	"name": "@shutters/api",
 	"type": "module",
 	"module": "src/index.ts",
-  "exports": {
-    ".": "./src/index.ts"
-  },
+	"exports": {
+		".": "./src/index.ts"
+	},
 	"scripts": {
 		"typecheck": "tsc",
 		"test": "bun test",
