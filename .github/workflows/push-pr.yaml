@@ -1,0 +1,40 @@
+---
+name: 'On Push/PR'
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  codequality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/checkout@v4
+      - run: bun install --frozen-lockfile
+      - run: bun run ci:codequality
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/checkout@v4
+      - run: bun install --frozen-lockfile
+      - run: bun run test
+
+  typecheck:
+    name: Type checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/checkout@v4
+      - run: bun install --frozen-lockfile
+      - run: bun run typecheck

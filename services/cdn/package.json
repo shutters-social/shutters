@@ -1,0 +1,13 @@
+{
+  "name": "@shutters/cdn-service",
+  "private": true,
+  "dependencies": {
+    "@shutters/cdn": "workspace:*"
+  },
+  "scripts": {
+		"clean": "rimraf --no-interactive dist",
+		"build": "bun build --compile --minify --sourcemap ./src/index.ts --outfile dist/cdn",
+		"build:clean": "bun run clean && bun run build",
+    "dev": "bun run ./src/index.ts"
+  }
+}

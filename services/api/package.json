@@ -1,0 +1,13 @@
+{
+  "name": "@shutters/api-service",
+  "private": true,
+  "dependencies": {
+    "@shutters/api": "workspace:*"
+  },
+  "scripts": {
+		"clean": "rimraf --no-interactive dist",
+		"build": "bun build --compile --minify --sourcemap ./src/index.ts --outfile dist/api",
+		"build:clean": "bun run clean && bun run build",
+    "dev": "bun run ./src/index.ts"
+  }
+}

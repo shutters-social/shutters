@@ -1,0 +1,31 @@
+{
+  "name": "@shutters/monorepo",
+  "private": true,
+  "packageManager": "bun@1.2.2",
+  "scripts": {
+    "clean": "turbo run clean",
+    "build": "turbo run build",
+    "build:bin": "turbo run build --filter={./services/*}",
+    "build:clean": "bun run clean && bun run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "ci:codequality": "turbo run ci:codequality",
+    "format": "turbo run format",
+    "format:fix": "turbo run format:fix",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "check": "turbo run check",
+    "check:fix": "turbo run check:fix",
+    "deploy": "turbo run deploy",
+    "dev": "turbo run dev"
+  },
+  "workspaces": [
+    "packages/*",
+    "services/*"
+  ],
+  "devDependencies": {
+    "@types/bun": "^1.2.2",
+    "turbo": "^2.4.1",
+    "typescript": "^5.7.3"
+  }
+}

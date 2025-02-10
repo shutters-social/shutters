@@ -1,0 +1,36 @@
+{
+  "name": "@shutters/shutterkit",
+  "version": "0.3.0",
+  "description": "Shutters.social service kit",
+  "author": "Shutters Team <contact@shutters.social>",
+  "license": "Apache-2.0",
+  "packageManager": "bun@1.2.2",
+  "type": "module",
+  "module": "./src/index.ts",
+  "exports": "./src/index.ts",
+  "scripts": {
+    "typecheck": "tsc",
+    "test": "bun test",
+    "ci:codequality": "biome ci .",
+    "format": "biome format",
+    "format:fix": "biome format --write",
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "check": "biome check",
+    "check:fix": "biome check --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.2.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@hono/prometheus": "^1.0.1",
+    "@sentry/bun": "^8.54.0",
+    "hono": "^4.7.0",
+    "pino": "^9.6.0",
+    "pino-logfmt": "^0.1.1",
+    "prom-client": "^15.1.3"
+  }
+}

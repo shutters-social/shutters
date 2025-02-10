@@ -1,0 +1,20 @@
+# Deploys multiple services to the dev environment.
+---
+name: Dev Deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  api:
+    uses: .github/workflows/deploy.yaml
+    with:
+      service-name: api
+      env: dev
+
+  cdn:
+    uses: .github/workflows/deploy.yaml
+    with:
+      service-name: cdn
+      env: dev
