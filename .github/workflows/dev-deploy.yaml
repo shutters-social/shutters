@@ -12,9 +12,11 @@ jobs:
     with:
       service-name: api
       env: dev
+    secrets: inherit
 
   cdn:
     uses: ./.github/workflows/deploy.yaml
     with:
       service-name: cdn
       env: dev
+    secrets: inherit
