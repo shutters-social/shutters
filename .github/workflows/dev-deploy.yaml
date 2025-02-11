@@ -10,9 +10,9 @@ jobs:
   deploy:
     strategy:
       matrix:
-        SERVICE_NAME: [api, cdn, dataplane]
+        service: [api, cdn, dataplane]
     uses: ./.github/workflows/deploy.yaml
     with:
-      service-name: ${SERVICE_NAME}
+      service-name: ${{ matrix.service }}
       env: dev
     secrets: inherit
