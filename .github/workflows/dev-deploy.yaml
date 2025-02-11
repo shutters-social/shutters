@@ -7,23 +7,12 @@ on:
       - main
 
 jobs:
-  api:
+  deploy:
+    strategy:
+      matrix:
+        SERVICE_NAME: [api, cdn, dataplane]
     uses: ./.github/workflows/deploy.yaml
     with:
-      service-name: api
-      env: dev
-    secrets: inherit
-
-  cdn:
-    uses: ./.github/workflows/deploy.yaml
-    with:
-      service-name: cdn
-      env: dev
-    secrets: inherit
-
-  dataplane:
-    uses: ./.github/workflows/deploy.yaml
-    with:
-      service-name: dataplane
+      service-name: ${SERVICE_NAME}
       env: dev
     secrets: inherit
