@@ -1,22 +1,22 @@
 {
-	"name": "@shutters/dataplane",
-	"type": "module",
-	"module": "src/index.ts",
-	"exports": {
-		".": "./src/index.ts"
-	},
-	"scripts": {
-		"typecheck": "tsc",
-		"test": "bun test",
-		"ci:codequality": "biome ci .",
-		"format": "biome format",
-		"format:fix": "biome format --write",
-		"lint": "biome lint",
-		"lint:fix": "biome lint --write",
-		"check": "biome check",
-		"check:fix": "biome check --write",
-		"deploy": "fly deploy --build-arg \"vcs_ref=$(git rev-parse --short HEAD)\""
-	},
+  "name": "@shutters/dataplane",
+  "type": "module",
+  "module": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc",
+    "test": "bun test",
+    "ci:codequality": "biome ci .",
+    "format": "biome format",
+    "format:fix": "biome format --write",
+    "lint": "biome lint",
+    "lint:fix": "biome lint --write",
+    "check": "biome check",
+    "check:fix": "biome check --write",
+    "deploy": "fly deploy --build-arg \"vcs_ref=$(git rev-parse --short HEAD)\""
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
