@@ -1,10 +1,10 @@
 import { prometheus } from '@hono/prometheus';
+import type { Integration } from '@sentry/core';
 import { type Env, Hono } from 'hono';
 import { requestId } from 'hono/request-id';
 import type { BlankEnv } from 'hono/types';
 import { Registry } from 'prom-client';
 import { Gauge } from 'prom-client';
-import type { Integration } from '@sentry/core';
 import { version as kitVersion } from '../package.json';
 import { logMiddleware, newLogger } from './logging';
 import { setupHonoSentry } from './sentry';

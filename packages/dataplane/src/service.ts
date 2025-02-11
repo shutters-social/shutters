@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/bun';
 import { Service } from '@shutters/shutterkit';
-import { health, profiles } from './api';
 import { libsqlIntegration } from 'sentry-integration-libsql-client';
+import { health, profiles } from './api';
 import { libsqlClient } from './db';
 
 export class DataplaneService extends Service {

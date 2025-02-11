@@ -1,4 +1,4 @@
-import { CdnService } from "./service";
+import { CdnService } from './service';
 
 const svc = new CdnService();
 svc.start();
