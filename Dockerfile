@@ -1,5 +1,7 @@
 FROM rockylinux/rockylinux:9-ubi-micro AS build
 
+ARG service
+
 COPY --from=oven/bun:1 /usr/local/bin/bun /usr/local/bin/bun
 
 WORKDIR /build
@@ -9,7 +11,7 @@ COPY packages packages
 RUN /usr/local/bin/bun install --frozen-lockfile
 
 COPY turbo.json .
-RUN /usr/local/bin/bun run build:bin
+RUN /usr/local/bin/bun run build --filter "@shutters/${service}"
 
 FROM rockylinux/rockylinux:9-ubi-micro AS run
 
