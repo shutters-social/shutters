@@ -31,7 +31,7 @@ jobs:
           flyctl secrets set \
             --stage \
             --config "services/${{ inputs.service-name }}/fly.toml" \
-            "SENTRY_ENV=${{ input.service-name }}"
+            "SENTRY_ENV=${{ inputs.service-name }}"
       - run: |
           flyctl deploy . \
             --config "services/${{ inputs.service-name }}/fly.toml" \
