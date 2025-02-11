@@ -1,1 +1,1 @@
-export * as health from "./health";
+export * as health from './health';

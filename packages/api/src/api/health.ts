@@ -1,10 +1,10 @@
-import { Hono } from "hono";
+import { Hono } from 'hono';
 
 export const createRouter = () => {
-	const router = new Hono();
+  const router = new Hono();
 
-	router.get("/", (c) => {
-		return c.text(`
+  router.get('/', c => {
+    return c.text(`
      _           _   _
  ___| |__  _   _| |_| |_ ___ _ __ ___
 / __| '_ \\| | | | __| __/ _ \ '__/ __|
@@ -18,15 +18,15 @@ Most API routes are under /xrpc/
       Code: https://github.com/shutters-social
   Protocol: https://atproto.com
 `);
-	});
+  });
 
-	router.get("/robots.txt", (c) =>
-		c.text("# Hello there dear stranger!\n\nUser-Agent: *\nAllow: /"),
-	);
+  router.get('/robots.txt', c =>
+    c.text('# Hello there dear stranger!\n\nUser-Agent: *\nAllow: /'),
+  );
 
-	router.get("/xrpc/_health", (c) => {
-		return c.json({ ok: true });
-	});
+  router.get('/xrpc/_health', c => {
+    return c.json({ ok: true });
+  });
 
-	return router;
+  return router;
 };
