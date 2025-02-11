@@ -5,7 +5,6 @@
   "scripts": {
     "clean": "turbo run clean",
     "build": "turbo run build",
-    "build:bin": "turbo run build --filter={./services/*}",
     "build:clean": "bun run clean && bun run build",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
@@ -20,10 +19,10 @@
     "dev": "turbo run dev"
   },
   "workspaces": [
-    "packages/*",
-    "services/*"
+    "packages/*"
   ],
   "devDependencies": {
+    "@atcute/lex-cli": "^1.0.4",
     "@types/bun": "^1.2.2",
     "turbo": "^2.4.1",
     "typescript": "^5.7.3"

@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/bun';
+import type { Integration } from '@sentry/core';
 import type { Env, Handler, Hono } from 'hono';
 import { createMiddleware } from 'hono/factory';
 import type { Schema } from 'hono/types';
@@ -61,6 +62,7 @@ export const setupHonoSentry = <
   B extends string,
 >(
   app: Hono<E, S, B>,
+  integrations: Integration[],
 ) => {
   Sentry.init({
     dsn: process.env.SENTRY_DSN,
@@ -85,6 +87,8 @@ export const setupHonoSentry = <
       Sentry.contextLinesIntegration(),
       Sentry.nodeContextIntegration(),
       Sentry.modulesIntegration(),
+
+      ...integrations,
     ],
     defaultIntegrations: false,
   });

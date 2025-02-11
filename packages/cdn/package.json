@@ -15,7 +15,9 @@
     "lint:fix": "biome lint --write",
     "check": "biome check",
     "check:fix": "biome check --write",
-    "deploy": "fly deploy --build-arg \"vcs_ref=$(git rev-parse --short HEAD)\""
+		"build": "bun build --compile --minify --sourcemap ./src/index.ts --outfile dist/cdn",
+		"build:clean": "bun run clean && bun run build",
+    "dev": "bun run ./src/index.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

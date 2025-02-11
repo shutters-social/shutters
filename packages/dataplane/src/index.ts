@@ -1,9 +1,4 @@
-import { Service } from '@shutters/shutterkit';
-import { health } from './api';
+import { DataplaneService } from "./service";
 
-export class DataplaneService extends Service {
-  protected setup(): void {
-    super.setup();
-    this.app.route('/', health.createRouter());
-  }
-}
+const svc = new DataplaneService();
+svc.start();

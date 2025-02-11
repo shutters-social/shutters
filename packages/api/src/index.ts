@@ -1,10 +1,4 @@
-import { Service } from '@shutters/shutterkit';
-import { health } from './api';
+import { ApiService } from "./service";
 
-export class ApiService extends Service {
-  protected setup() {
-    super.setup();
-
-    this.app.route('/', health.createRouter());
-  }
-}
+const svc = new ApiService();
+svc.start();

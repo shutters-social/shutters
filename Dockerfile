@@ -6,7 +6,6 @@ WORKDIR /build
 
 COPY package.json bun.lock ./
 COPY packages packages
-COPY services services
 RUN /usr/local/bin/bun install --frozen-lockfile
 
 COPY turbo.json .
@@ -15,7 +14,7 @@ RUN /usr/local/bin/bun run build:bin
 FROM rockylinux/rockylinux:9-ubi-micro AS run
 
 ARG service
-COPY --from=build /build/services/${service}/dist/${service} /usr/local/bin/start
+COPY --from=build /build/packages/${service}/dist/${service} /usr/local/bin/start
 
 ARG vcs_ref
 LABEL org.label-schema.vcs-ref=$vcs_ref \

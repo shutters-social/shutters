@@ -30,10 +30,10 @@ jobs:
       - run: |
           flyctl secrets set \
             --stage \
-            --config "services/${{ inputs.service-name }}/fly.toml" \
+            --config "packages/${{ inputs.service-name }}/fly.toml" \
             "SENTRY_ENV=${{ inputs.service-name }}"
       - run: |
           flyctl deploy . \
-            --config "services/${{ inputs.service-name }}/fly.toml" \
+            --config "packages/${{ inputs.service-name }}/fly.toml" \
             --remote-only \
             --build-arg "vcs_ref=$(git rev-parse --short HEAD)"

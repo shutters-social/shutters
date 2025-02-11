@@ -4,6 +4,7 @@ import { requestId } from 'hono/request-id';
 import type { BlankEnv } from 'hono/types';
 import { Registry } from 'prom-client';
 import { Gauge } from 'prom-client';
+import type { Integration } from '@sentry/core';
 import { version as kitVersion } from '../package.json';
 import { logMiddleware, newLogger } from './logging';
 import { setupHonoSentry } from './sentry';
@@ -14,6 +15,7 @@ export class Service<E extends Env = BlankEnv> {
   public prometheus!: ReturnType<typeof prometheus>;
   public registry = new Registry();
   public logger = newLogger('service');
+  public sentryIntegrations: Integration[] = [];
 
   constructor() {
     this.setupSentry();
@@ -23,7 +25,7 @@ export class Service<E extends Env = BlankEnv> {
 
   private setupSentry() {
     if (process.env.SENTRY_DSN) {
-      setupHonoSentry(this.app);
+      setupHonoSentry(this.app, this.sentryIntegrations);
     }
   }
 
