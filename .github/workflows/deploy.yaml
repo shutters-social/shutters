@@ -17,7 +17,7 @@ jobs:
     name: Deploy service ${{ inputs.service-name }} to shutters-${{ inputs.env }}
     runs-on: ubuntu-latest
     concurrency: ${{ inputs.service-name }}-${{ inputs.env }}-deploy
-    environment: ${{ inputs.env }}
+    environment: ${{ inputs.service-name }}-${{ inputs.env }}
     steps:
       - name: Load secret
         uses: 1password/load-secrets-action@v2
