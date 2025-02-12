@@ -15,7 +15,7 @@
     "lint:fix": "biome lint --write",
     "check": "biome check",
     "check:fix": "biome check --write",
-    "build": "bun build --compile --minify --sourcemap ./src/index.ts --outfile dist/cdn",
+    "build": "bun build --compile --minify --sourcemap ./src/index.ts --outfile dist/dataplane",
     "build:clean": "bun run clean && bun run build",
     "dev": "bun run ./src/index.ts"
   },
