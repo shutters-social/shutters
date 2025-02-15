@@ -32,17 +32,14 @@ jobs:
           FLY_API_TOKEN: op://shutters-cicd/shutters-${{ inputs.env }}/flytoken
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: |
+      - env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+        run: |
           cat "packages/${{ inputs.service-name }}/.env.secrets" \
             | op inject \
             | flyctl secrets import \
                 --stage \
                 --config "packages/${{ inputs.service-name }}/fly.toml"
-      - run: |
-          flyctl secrets set \
-            --stage \
-            --config "packages/${{ inputs.service-name }}/fly.toml" \
-            "SENTRY_ENV=${{ inputs.service-name }}"
       - run: |
           flyctl deploy . \
             --config "packages/${{ inputs.service-name }}/fly.toml" \
