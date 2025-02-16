@@ -1,6 +1,9 @@
-import { createClient } from '@libsql/client';
-import { drizzle } from 'drizzle-orm/libsql';
-import { config } from '../config';
+import { createClient } from "@libsql/client";
+import type { Logger as DrizzleLogger } from "drizzle-orm";
+import { drizzle, type LibSQLDatabase } from "drizzle-orm/libsql";
+import { migrate } from "drizzle-orm/libsql/migrator";
+import { config } from "../config";
+import type { Logger as PinoLogger } from "pino";
 
 export const libsqlClient = createClient({
   url: config.DATAPLANE_DB_URL,
@@ -8,4 +11,39 @@ export const libsqlClient = createClient({
   concurrency: config.DATAPLANE_DB_CONCURRENCY,
 });
 
-export const db = drizzle(libsqlClient);
+let _db: LibSQLDatabase | undefined = undefined;
+
+class DbLogger implements DrizzleLogger {
+  constructor(
+    private logger: PinoLogger,
+    private level: "info" | "debug",
+  ) {}
+
+  logQuery(query: string, params: unknown[]): void {
+    this.logger[this.level](
+      {
+        query,
+        params,
+      },
+      "executing query",
+    );
+  }
+}
+
+export const initDb = (logger: PinoLogger) => {
+  _db = drizzle(libsqlClient, {
+    logger: new DbLogger(logger, "info"),
+  });
+};
+
+export const getDb = () => {
+  if (_db) return _db;
+  throw new Error("DB has not been initialized yet!");
+};
+
+export const runMigrations = async (logger: PinoLogger) => {
+  logger.info("Running migrations");
+  await migrate(getDb(), {
+    migrationsFolder: "./migrations",
+  });
+};

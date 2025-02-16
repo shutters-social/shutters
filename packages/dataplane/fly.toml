@@ -7,8 +7,11 @@ primary_region = 'lhr'
 [build.args]
   service = "dataplane"
 
+[deploy]
+  release_command = "/opt/start migrate"
+
 [processes]
-  app = '/usr/local/bin/start'
+  app = '/opt/start'
 
 [metrics]
   port = 3000

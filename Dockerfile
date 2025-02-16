@@ -16,7 +16,8 @@ RUN /usr/local/bin/bun run build --filter "@shutters/${service}"
 FROM rockylinux/rockylinux:9-ubi-micro AS run
 
 ARG service
-COPY --from=build /build/packages/${service}/dist/${service} /usr/local/bin/start
+COPY --from=build /build/packages/${service}/migration[s] /opt/migrations
+COPY --from=build /build/packages/${service}/dist/${service} /opt/start
 
 ARG vcs_ref
 LABEL org.label-schema.vcs-ref=$vcs_ref \
@@ -24,4 +25,5 @@ LABEL org.label-schema.vcs-ref=$vcs_ref \
   SERVICE_TAGS=$vcs_ref
 ENV APP_REVISION=${vcs_ref}
 
-CMD [ "/usr/local/bin/start" ]
+WORKDIR /opt
+CMD [ "/opt/start" ]

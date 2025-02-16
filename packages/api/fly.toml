@@ -16,7 +16,7 @@ primary_region = 'lhr'
   processes = ['app']
 
 [processes]
-  app = '/usr/local/bin/start'
+  app = '/opt/start'
 
 [metrics]
   port = 3000
