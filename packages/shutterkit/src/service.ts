@@ -1,21 +1,21 @@
-import { prometheus } from "@hono/prometheus";
-import type { Integration } from "@sentry/core";
-import { type Env, Hono } from "hono";
-import { requestId } from "hono/request-id";
-import type { BlankEnv } from "hono/types";
-import { Registry } from "prom-client";
-import { Gauge } from "prom-client";
-import { version as kitVersion } from "../package.json";
-import { logMiddleware, newLogger } from "./logging";
-import { setupHonoSentry } from "./sentry";
-import type { Server } from "bun";
+import { prometheus } from '@hono/prometheus';
+import type { Integration } from '@sentry/core';
+import type { Server } from 'bun';
+import { type Env, Hono } from 'hono';
+import { requestId } from 'hono/request-id';
+import type { BlankEnv } from 'hono/types';
+import { Registry } from 'prom-client';
+import { Gauge } from 'prom-client';
+import { version as kitVersion } from '../package.json';
+import { logMiddleware, newLogger } from './logging';
+import { setupHonoSentry } from './sentry';
 
 export class Service<E extends Env = BlankEnv> {
   public app = new Hono<E>();
-  public metricsPrefix = "shutters_";
+  public metricsPrefix = 'shutters_';
   public prometheus!: ReturnType<typeof prometheus>;
   public registry = new Registry();
-  public logger = newLogger("service");
+  public logger = newLogger('service');
   public sentryIntegrations: Integration[] = [];
 
   constructor() {
@@ -32,9 +32,9 @@ export class Service<E extends Env = BlankEnv> {
 
   private setupPrometheus() {
     const versionGauge = new Gauge({
-      name: "shutterkit_version",
-      help: "The installed version of @shutter/shutterkit.",
-      labelNames: ["version"],
+      name: 'shutterkit_version',
+      help: 'The installed version of @shutter/shutterkit.',
+      labelNames: ['version'],
       registers: [this.registry],
     });
     versionGauge.labels({ version: kitVersion }).set(1);
@@ -47,18 +47,18 @@ export class Service<E extends Env = BlankEnv> {
   }
 
   protected setup() {
-    this.app.use("*", requestId());
-    this.app.use("*", this.prometheus.registerMetrics);
-    this.app.get("/metrics", this.prometheus.printMetrics);
-    this.app.use("*", logMiddleware(this.logger));
+    this.app.use('*', requestId());
+    this.app.use('*', this.prometheus.registerMetrics);
+    this.app.get('/metrics', this.prometheus.printMetrics);
+    this.app.use('*', logMiddleware(this.logger));
   }
 
   public start(
     port = 3000,
-    hostname = "0.0.0.0",
+    hostname = '0.0.0.0',
   ): StartReturn | Promise<StartReturn> {
     const server = Bun.serve({
-      development: process.env.ENV === "development",
+      development: process.env.ENV === 'development',
       port,
       hostname,
       fetch: this.app.fetch,
@@ -68,11 +68,11 @@ export class Service<E extends Env = BlankEnv> {
         port: server.port,
         host: server.hostname,
       },
-      "server started",
+      'server started',
     );
 
-    process.on("exit", async () => {
-      this.logger.info("service received exit signal, terminating...");
+    process.on('exit', async () => {
+      this.logger.info('service received exit signal, terminating...');
       await server.stop();
       process.exit(0);
     });
