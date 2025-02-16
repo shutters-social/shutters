@@ -12,3 +12,5 @@ export const profiles = sqliteTable('profiles', {
   createdAt: text('created_at').notNull(),
   indexedAt: text('indexed_at').default(sql`(CURRENT_TIMESTAMP)`),
 });
+export type ProfileSelect = typeof profiles.$inferSelect;
+export type ProfileInsert = typeof profiles.$inferInsert;

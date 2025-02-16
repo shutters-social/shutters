@@ -1,9 +1,11 @@
 import { createClient } from '@libsql/client';
 import type { Logger as DrizzleLogger } from 'drizzle-orm';
-import { type LibSQLDatabase, drizzle } from 'drizzle-orm/libsql';
+import { type LibSQLDatabase } from 'drizzle-orm/libsql';
+import { drizzle } from 'drizzle-orm/libsql/web';
 import { migrate } from 'drizzle-orm/libsql/migrator';
 import type { Logger as PinoLogger } from 'pino';
 import { config } from '../config';
+import * as schema from './schema';
 
 export const libsqlClient = createClient({
   url: config.DATAPLANE_DB_URL,
@@ -11,7 +13,7 @@ export const libsqlClient = createClient({
   concurrency: config.DATAPLANE_DB_CONCURRENCY,
 });
 
-let _db: LibSQLDatabase | undefined = undefined;
+let _db: LibSQLDatabase<typeof schema> | undefined = undefined;
 
 class DbLogger implements DrizzleLogger {
   constructor(
@@ -33,6 +35,7 @@ class DbLogger implements DrizzleLogger {
 export const initDb = (logger: PinoLogger) => {
   _db = drizzle(libsqlClient, {
     logger: new DbLogger(logger, 'info'),
+    schema: schema,
   });
 };
 
