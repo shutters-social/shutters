@@ -7,6 +7,9 @@ import type { Logger as PinoLogger } from 'pino';
 import { config } from '../config';
 import * as schema from './schema';
 
+// Import to fix Docker issues with compiled bin
+import '@libsql/linux-x64-gnu';
+
 export const libsqlClient = createClient({
   url: config.DATAPLANE_DB_URL,
   authToken: config.DATAPLANE_DB_AUTH_TOKEN,
