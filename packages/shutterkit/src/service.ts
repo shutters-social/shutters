@@ -12,7 +12,7 @@ import type { Server } from "bun";
 
 export class Service<E extends Env = BlankEnv> {
   public app = new Hono<E>();
-  public metricsPrefix = "shutter_";
+  public metricsPrefix = "shutters_";
   public prometheus!: ReturnType<typeof prometheus>;
   public registry = new Registry();
   public logger = newLogger("service");
@@ -72,6 +72,7 @@ export class Service<E extends Env = BlankEnv> {
     );
 
     process.on("exit", async () => {
+      this.logger.info("service received exit signal, terminating...");
       await server.stop();
       process.exit(0);
     });

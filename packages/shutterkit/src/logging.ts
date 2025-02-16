@@ -13,7 +13,7 @@ export const logMiddleware = <A extends string, B extends boolean>(
       path: ctx.req.path,
       headers: ctx.req.header(),
       requestId: ctx.get('requestId'),
-    });
+    }, 'request received');
 
     await next();
 
@@ -25,5 +25,5 @@ export const logMiddleware = <A extends string, B extends boolean>(
       status: ctx.res.status,
       requestId: ctx.get('requestId'),
       error: !!ctx.error,
-    });
+    }, 'response returned');
   });
