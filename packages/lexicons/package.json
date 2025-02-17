@@ -1,7 +1,8 @@
 {
   "name": "@shutters/lexicons",
-  "module": "src/index.ts",
   "type": "module",
+  "module": "src/index.ts",
+  "exports": "./src/index.ts",
   "devDependencies": {
     "@types/bun": "latest",
     "zod": "^3.24.2"

@@ -10,7 +10,7 @@ export const profile = z.object({
 });
 
 export const isProfile = (
-  val: any,
+  val: unknown,
 ): val is SocialShuttersActorProfile.Record => {
   return profile.safeParse(val).success;
 };
