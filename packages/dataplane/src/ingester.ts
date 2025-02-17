@@ -5,13 +5,10 @@ import type { Logger } from 'pino';
 import { getDb } from './db';
 import { type ProfileInsert, profiles } from './db/schema';
 
-const jetstream = new Jetstream({
-  wantedCollections: ['social.shutters.*'],
-});
-
-export const start = async (logger: Logger) => {
-  if (!jetstream.ws) return;
-  jetstream.ws.binaryType = 'arraybuffer';
+export const newIngester = (logger: Logger) => {
+  const jetstream = new Jetstream({
+    wantedCollections: ['social.shutters.*'],
+  });
 
   jetstream.on('commit', async event => {
     logger.info(
@@ -31,10 +28,10 @@ export const start = async (logger: Logger) => {
 
   logger.info('starting ingester');
 
-  jetstream.start();
+  return jetstream;
 };
 
-export const ingestProfile = async (
+const ingestProfile = async (
   logger: Logger,
   event: CommitEvent<`social.shutters.actor.profile`>,
 ) => {

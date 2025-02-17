@@ -3,7 +3,7 @@ import { Service } from '@shutters/shutterkit';
 import { libsqlIntegration } from 'sentry-integration-libsql-client';
 import { health, profiles } from './api';
 import { initDb, libsqlClient, runMigrations } from './db';
-import * as ingester from './ingester';
+import { newIngester } from './ingester';
 
 export class DataplaneService extends Service {
   public sentryIntegrations = [libsqlIntegration(libsqlClient, Sentry)];
@@ -26,7 +26,9 @@ export class DataplaneService extends Service {
         break;
 
       case 'ingester':
-        await ingester.start(this.logger.child({ component: 'ingester' }));
+        const ingester = newIngester(this.logger.child({ component: 'ingester' }));
+        ingester.start();
+        ingester.ws.binaryType = 'arraybuffer';
         break;
 
       default:
