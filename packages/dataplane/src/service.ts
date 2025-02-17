@@ -26,8 +26,10 @@ export class DataplaneService extends Service {
         break;
 
       case 'ingester':
+        // biome-ignore lint/correctness/noSwitchDeclarations: <explanation>
         const ingester = newIngester(this.logger.child({ component: 'ingester' }));
         ingester.start();
+        // @ts-expect-error This is set now
         ingester.ws.binaryType = 'arraybuffer';
         break;
 
