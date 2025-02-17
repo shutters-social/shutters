@@ -27,10 +27,12 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@atcute/client": "^2.0.7",
     "@hono/zod-validator": "^0.4.2",
     "@libsql/client": "^0.14.0",
     "@shutters/lexicons": "workspace:*",
     "@shutters/shutterkit": "workspace:*",
+    "@skyware/jetstream": "^0.2.2",
     "drizzle-orm": "^0.39.3",
     "hono": "^4.7.1",
     "pino": "^9.6.0",
