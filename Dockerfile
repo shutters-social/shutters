@@ -16,6 +16,7 @@ RUN /usr/local/bin/bun run build --filter "@shutters/${service}"
 FROM rockylinux/rockylinux:9-ubi-micro AS run
 
 ARG service
+COPY --from=build /build/node_modules/@libsql/linux-x64-gnu /opt/node_modules/@libsql/linux-x64-gnu
 COPY --from=build /build/packages/${service}/migration[s] /opt/migrations
 COPY --from=build /build/packages/${service}/dist/${service} /opt/start
 
