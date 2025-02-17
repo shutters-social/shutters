@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@atcute/client": "^2.0.7",
-    "@hono/zod-validator": "^0.4.2",
+    "@hono/zod-validator": "^0.4.3",
     "@libsql/client": "^0.14.0",
     "@shutters/lexicons": "workspace:*",
     "@shutters/shutterkit": "workspace:*",
