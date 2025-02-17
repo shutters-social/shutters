@@ -3,6 +3,7 @@ import { Service } from '@shutters/shutterkit';
 import { libsqlIntegration } from 'sentry-integration-libsql-client';
 import { health, profiles } from './api';
 import { initDb, libsqlClient, runMigrations } from './db';
+import * as ingester from './ingester';
 
 export class DataplaneService extends Service {
   public sentryIntegrations = [libsqlIntegration(libsqlClient, Sentry)];
@@ -20,10 +21,13 @@ export class DataplaneService extends Service {
 
   public async start() {
     switch (process.argv[process.argv.length - 1]) {
-      // biome-ignore lint/suspicious/noFallthroughSwitchClause: <explanation>
       case 'migrate':
-        await runMigrations(this.logger);
-        process.exit(0);
+        await runMigrations(this.logger.child({ component: 'migrator' }));
+        break;
+
+      case 'ingester':
+        await ingester.start(this.logger.child({ component: 'ingester' }));
+        break;
 
       default:
         return super.start();

@@ -1,14 +1,11 @@
 import { createClient } from '@libsql/client';
 import type { Logger as DrizzleLogger } from 'drizzle-orm';
-import { type LibSQLDatabase } from 'drizzle-orm/libsql';
-import { drizzle } from 'drizzle-orm/libsql/web';
+import type { LibSQLDatabase } from 'drizzle-orm/libsql';
 import { migrate } from 'drizzle-orm/libsql/migrator';
+import { drizzle } from 'drizzle-orm/libsql/web';
 import type { Logger as PinoLogger } from 'pino';
 import { config } from '../config';
 import * as schema from './schema';
-
-// Import to fix Docker issues with compiled bin
-import '@libsql/linux-x64-gnu';
 
 export const libsqlClient = createClient({
   url: config.DATAPLANE_DB_URL,
