@@ -34,7 +34,7 @@
     "@shutters/shutterkit": "workspace:*",
     "@skyware/jetstream": "^0.2.2",
     "drizzle-orm": "^0.39.3",
-    "hono": "^4.7.1",
+    "hono": "^4.7.2",
     "pino": "^9.6.0",
     "sentry-integration-libsql-client": "^1.3.0",
     "zod": "^3.24.2"
