@@ -30,7 +30,7 @@
     "@atcute/cid": "^2.1.0",
     "@aws-sdk/client-dynamodb": "^3.744.0",
     "@aws-sdk/client-s3": "^3.744.0",
-    "@aws-sdk/lib-dynamodb": "^3.744.0",
+    "@aws-sdk/lib-dynamodb": "^3.751.0",
     "@sentry/bun": "^9.1.0",
     "@shutters/shutterkit": "workspace:*",
     "hono": "^4.7.1",
